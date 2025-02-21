@@ -25,7 +25,7 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* Logo sin fondo extra, recortado para mostrar solo el arándano */}
             <motion.img
-              src="/Blueberry.png"
+              src="/lioberris.png"
               alt="Lioberries Logo"
               className="w-28 sm:w-32 object-contain bg-transparent"
               style={{ clipPath: 'ellipse(45% 30% at 50% 50%)' }}
