@@ -29,7 +29,7 @@ const sampleProduct = {
     'Sin aditivos',
     'Sin conservantes',
     'Sin azúcares añadidos',
-    'Ponsleo'
+    "100% natural"
   ],
   nutritionalInfo: [
     { label: "Calorías", value: "350kcal/100g" },
