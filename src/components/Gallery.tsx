@@ -33,44 +33,45 @@ const Gallery = () => {
     }
   }, [emblaApi]);
 
+  // Imágenes locales en la carpeta public
   const images = [
     {
-      url: "https://images.pexels.com/photos/15497525/pexels-photo-15497525/free-photo-of-dulce-fresas-pastel-fruta.jpeg?auto=compress&cs=tinysrgb&w=600",
-      title: "Pastel de Fresas",
+      url: "/pastel.jpeg",
+      title: "Pastel de Arándanos",
       description: "Un pastel suave y esponjoso, perfecto para el postre."
     },
     {
-      url: "https://images.pexels.com/photos/1120581/pexels-photo-1120581.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/ensalada.jpeg",
       title: "Ensalada de Arándanos",
       description: "Frescos arándanos combinados con vegetales crujientes."
     },
     {
-      url: "https://images.pexels.com/photos/1228530/pexels-photo-1228530.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/smothie.jpeg",
       title: "Smoothie Energético",
       description: "Un batido revitalizante lleno de nutrientes."
     },
     {
-      url: "https://images.pexels.com/photos/802508/pexels-photo-802508.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/tarta.webp",
       title: "Tarta de Arándanos",
       description: "Una tarta clásica con un toque moderno de arándanos."
     },
     {
-      url: "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/muffins.jpeg",
       title: "Muffins de Arándanos",
       description: "Pequeños y deliciosos, ideales para cualquier momento."
     },
     {
-      url: "https://images.pexels.com/photos/3026807/pexels-photo-3026807.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/yogurt.jpeg",
       title: "Parfait de Yogur y Arándanos",
       description: "Capas de yogur, granola y arándanos frescos."
     },
     {
-      url: "https://images.pexels.com/photos/827516/pexels-photo-827516.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/helado.jpeg",
       title: "Helado Artesanal",
       description: "Helado cremoso infusionado con arándanos naturales."
     },
     {
-      url: "https://images.pexels.com/photos/1495534/pexels-photo-1495534.jpeg?auto=compress&cs=tinysrgb&w=600",
+      url: "/crepes.jpeg",
       title: "Crepes de Arándanos",
       description: "Delgadas crepes rellenas de salsa de arándanos."
     },

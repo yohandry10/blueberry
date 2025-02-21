@@ -74,8 +74,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage:
-            'url("https://images.pexels.com/photos/45908/blueberry-fruit-blue-45908.jpeg?auto=compress&cs=tinysrgb&w=600")',
+          backgroundImage: 'url("/blue.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -141,23 +140,23 @@ const Hero = () => {
             transition={{ delay: 1.4 }}
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            {/* Botones con efecto de llenado y transiciones sorprendentes */}
+            {/* Botones con efecto de llenado y transiciones sorprendentes, mismos tamaños */}
             <a
               href="#products"
-              className="group relative inline-block overflow-hidden rounded-full bg-gray-700"
+              className="group relative inline-block w-64 overflow-hidden rounded-full bg-gray-700"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-              <span className="relative block px-10 py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105">
+              <span className="relative block py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105 text-center">
                 Explorar Productos
               </span>
             </a>
 
             <a
               href="#benefits"
-              className="group relative inline-block overflow-hidden rounded-full bg-gray-700"
+              className="group relative inline-block w-64 overflow-hidden rounded-full bg-gray-700"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-              <span className="relative block px-10 py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105">
+              <span className="relative block py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105 text-center">
                 Conocer Más
               </span>
             </a>
@@ -207,4 +206,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
