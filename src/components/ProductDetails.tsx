@@ -21,10 +21,11 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  // Se sobrescriben los valores de precio y peso para mostrar 1000 gr y S/268.
+  const updatedPrice = "S/268";
+  const updatedWeight = "1000 gr";
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50">
@@ -51,18 +52,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-
-            {/* Badges flotantes */}
             <motion.div
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-6 -right-6 bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg"
             >
               Premium
@@ -76,21 +68,22 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.title}</h1>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                {product.title}
+              </h1>
               <p className="text-xl text-gray-600">{product.description}</p>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex items-center space-x-6"
             >
-              <span className="text-4xl font-bold text-purple-600">{product.price}</span>
-              <span className="text-lg text-gray-500">{product.weight}</span>
+              <span className="text-4xl font-bold text-purple-600">
+                {updatedPrice}
+              </span>
+              <span className="text-lg text-gray-500">{updatedWeight}</span>
             </motion.div>
-
-            {/* Características */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -102,34 +95,31 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               <Feature icon={<Award className="w-6 h-6" />} title="Certificado" />
               <Feature icon={<Truck className="w-6 h-6" />} title="Envío Gratis" />
             </motion.div>
-
-            {/* Botones de Acción */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 1 }}
               className="flex space-x-4"
             >
-              <button className="flex-1 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg
-                              font-semibold transform hover:scale-105 transition-all duration-300
-                              shadow-lg hover:shadow-xl">
+              {/* Enlace que redirige a WhatsApp */}
+              <a
+                href="https://wa.me/51998223938"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+              >
                 Comprar Ahora
-              </button>
-              <button className="flex-1 py-4 border-2 border-purple-600 text-purple-600 rounded-lg
-                              font-semibold transform hover:scale-105 transition-all duration-300
-                              hover:bg-purple-50">
-                Añadir al Carrito
-              </button>
+              </a>
             </motion.div>
-
-            {/* Información Nutricional */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 1.2 }}
               className="border-t pt-6"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Información Nutricional</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Información Nutricional
+              </h3>
               <div className="grid grid-cols-2 gap-4">
                 {product.nutritionalInfo.map((info, index) => (
                   <div key={index} className="flex justify-between">
@@ -141,8 +131,6 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Beneficios e Ingredientes */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -160,9 +148,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               ))}
             </ul>
           </div>
-
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-gray-900">Ingredientes</h3>
+            <div className="border-b-2 border-gray-200 my-2"></div>
             <ul className="space-y-4">
               {product.ingredients.map((ingredient, index) => (
                 <li key={index} className="flex items-start">

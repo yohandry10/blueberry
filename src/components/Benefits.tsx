@@ -6,137 +6,136 @@ import { Heart, Leaf, Award, ShieldCheck, Recycle, Clock } from 'lucide-react';
 const Benefits = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.15,
   });
 
   const containerVariants = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: 'spring', stiffness: 100, damping: 15 },
+    },
+  };
+
+  // Variantes para el título interactivo:
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: 'spring', stiffness: 120, damping: 20 },
+    },
+    hover: {
+      scale: 1.05,
+      textShadow: '0px 0px 8px rgba(59,130,246,0.8)',
+      background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)',
+      WebkitBackgroundClip: 'text',
+      color: 'transparent',
+    },
+    tap: { scale: 0.95 },
   };
 
   const benefits = [
     {
-      icon: <Heart className="w-8 h-8 text-red-500" />,
-      title: "Beneficios para la Salud",
-      description: "Rico en antioxidantes y nutrientes esenciales para el bienestar general"
+      icon: <Heart className="w-10 h-10 text-red-500" />,
+      title: "Beneficios para la salud",
+      description: "Rico en antioxidantes y nutrientes esenciales para el bienestar general.",
     },
     {
-      icon: <Leaf className="w-8 h-8 text-green-500" />,
-      title: "100% Natural",
-      description: "Arándanos liofilizados puros sin aditivos ni conservantes"
+      icon: <Leaf className="w-10 h-10 text-green-500" />,
+      title: "100% natural",
+      description: "Arándanos liofilizados puros sin aditivos ni conservantes.",
     },
     {
-      icon: <Award className="w-8 h-8 text-yellow-500" />,
-      title: "Calidad Premium",
-      description: "Los más altos estándares en procesamiento y empaque"
+      icon: <Award className="w-10 h-10 text-yellow-500" />,
+      title: "Calidad premium",
+      description: "El más alto estándar en procesamiento y empaque.",
     },
     {
-      icon: <ShieldCheck className="w-8 h-8 text-blue-500" />,
+      icon: <ShieldCheck className="w-10 h-10 text-blue-500" />,
       title: "Certificado",
-      description: "Cumple con estándares internacionales de seguridad y calidad"
+      description: "Cumple con estándares internacionales de seguridad y calidad.",
     },
     {
-      icon: <Recycle className="w-8 h-8 text-green-600" />,
-      title: "Eco-Amigable",
-      description: "Empaque sostenible y prácticas de producción responsables"
+      icon: <Recycle className="w-10 h-10 text-green-600" />,
+      title: "Eco-amigable",
+      description: "Empaque sostenible y prácticas de producción responsables.",
     },
     {
-      icon: <Clock className="w-8 h-8 text-purple-500" />,
-      title: "Larga Duración",
-      description: "Frescura preservada mediante tecnología de liofilización"
-    }
+      icon: <Clock className="w-10 h-10 text-purple-500" />,
+      title: "Larga duración",
+      description: "Frescura preservada mediante tecnología de liofilización.",
+    },
   ];
 
-  // SVG Decorativo animado
-  const DecorativeSVG = () => (
-    <motion.svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
-      className="absolute -z-10 opacity-10"
-      animate={{
-        rotate: 360,
-        scale: [1, 1.1, 1],
-      }}
-      transition={{
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear",
-      }}
-    >
-      <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" strokeWidth="2" />
-    </motion.svg>
-  );
-
   return (
-    <section id="benefits" className="py-20 bg-white relative overflow-hidden">
-      {/* SVGs Decorativos */}
-      <div className="absolute top-20 left-20 text-purple-600">
-        <DecorativeSVG />
-      </div>
-      <div className="absolute bottom-20 right-20 text-blue-600">
-        <DecorativeSVG />
-      </div>
-
+    <section
+      id="benefits"
+      className="py-24 bg-white relative overflow-hidden"
+      style={{ fontFamily: "'Roboto', sans-serif" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="space-y-16"
+          animate={inView ? 'visible' : 'hidden'}
+          className="space-y-20"
         >
-          <div className="text-center relative">
-            <motion.h2 
-              variants={itemVariants}
-              className="text-4xl font-bold text-gray-900 mb-4"
+          <div className="text-center">
+            <motion.h2
+              variants={titleVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="whitespace-nowrap text-4xl md:text-5xl font-bold mb-6 text-gray-900"
+              style={{ letterSpacing: '0.03em' }}
             >
-              ¿Por qué Elegir Nuestro Polvo de Arándanos?
+              ¿Por qué elegir nuestro polvo de arándanos?
             </motion.h2>
-            <motion.p 
+            <motion.p
               variants={itemVariants}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto"
             >
-              Experimenta el poder puro de la naturaleza con nuestro polvo de arándanos liofilizado premium
+              Descubre la pureza premium de nuestros arándanos liofilizados, cuidadosamente procesados para preservar toda su vitalidad.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500
-                         hover:-translate-y-2 overflow-hidden"
+                whileHover={{ scale: 1.03 }}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-200"
               >
-                <div className="flex items-start space-x-4 relative z-10">
-                  <div className="bg-white p-3 rounded-lg shadow-md">
+                <div className="flex items-start space-x-5 relative z-10">
+                  <div className="bg-white p-4 rounded-full shadow-sm">
                     {benefit.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                       {benefit.title}
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 leading-relaxed">
                       {benefit.description}
                     </p>
                   </div>
                 </div>
-                
-                {/* Efecto de gradiente en hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <motion.div
+                  className="absolute inset-0 rounded-2xl"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02))',
+                  }}
+                />
               </motion.div>
             ))}
           </div>

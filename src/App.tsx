@@ -9,12 +9,13 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 
+
 const sampleProduct = {
   id: "1",
-  title: "Polvo de Arándanos Premium",
-  price: "$24.99",
+  title: "Polvo de Arándano Liofilizado",
+  price: "S/24.99", // Precio en soles
   weight: "100g",
-  image: "/arandanos.jpeg", // Ruta actualizada para cargar la imagen desde public
+  image: "/6.png", // Ruta actualizada para cargar la imagen desde public
   description: "Nuestro polvo de arándanos premium está elaborado mediante un proceso de liofilización que preserva todos los nutrientes y el sabor natural de los arándanos frescos.",
   benefits: [
     "Alto contenido en antioxidantes",
@@ -24,10 +25,11 @@ const sampleProduct = {
     "Mejora la salud visual"
   ],
   ingredients: [
-    "100% Arándanos liofilizados",
-    "Sin aditivos",
-    "Sin conservantes",
-    "Sin azúcares añadidos"
+    '100% Arándanos liofilizados',
+    'Sin aditivos',
+    'Sin conservantes',
+    'Sin azúcares añadidos',
+    'Ponsleo'
   ],
   nutritionalInfo: [
     { label: "Calorías", value: "350kcal/100g" },

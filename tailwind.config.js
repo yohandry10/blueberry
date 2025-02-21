@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brandPurple: '#8B3C96', // Morado exacto del logo
+      }
+    },
   },
   plugins: [],
 };

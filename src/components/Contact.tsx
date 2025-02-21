@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import {
-  motion,
-  Variants,
-  useMotionValue,
-  useTransform,
-  AnimatePresence
-} from 'framer-motion';
+import { motion, Variants, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Send, Check } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 // Variants para animaciones
 const containerVariants: Variants = {
@@ -26,17 +21,17 @@ const itemVariants: Variants = {
 
 const inputVariants: Variants = {
   rest: { scale: 1 },
-  focus: { scale: 1.03, boxShadow: '0 0 8px rgba(128,90,213,0.5)' }
+  focus: { scale: 1.03, boxShadow: '0 0 8px rgba(17,24,41,0.5)' } // #111829 en rgba aproximado
 };
 
-// Fondo de gradiente animado en tonos morados/lilas con máscara para bordes sutiles
+// Fondo de gradiente animado en tonos de #111829 y negro con máscara para bordes sutiles
 const AnimatedGradientBackground = () => {
   const gradientVariants: Variants = {
     animate: {
       background: [
-        'linear-gradient(135deg, #6a1b9a, #8e24aa)',
-        'linear-gradient(135deg, #8e24aa, #ab47bc)',
-        'linear-gradient(135deg, #ab47bc, #ce93d8)'
+        'linear-gradient(135deg, #111829, #000)',
+        'linear-gradient(135deg, #000, #111829)',
+        'linear-gradient(135deg, #111829, #000)'
       ]
     }
   };
@@ -47,10 +42,8 @@ const AnimatedGradientBackground = () => {
       animate="animate"
       transition={{ duration: 10, repeat: Infinity, repeatType: 'mirror' }}
       style={{
-        maskImage:
-          "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%)",
-        WebkitMaskImage:
-          "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%)"
+        maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%)",
+        WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 70%)"
       }}
     />
   );
@@ -75,7 +68,7 @@ const InteractiveBackgroundShapes = () => {
     <motion.div className="absolute inset-0 -z-10" onMouseMove={handleMouseMove}>
       {/* Blob 1 con borde oscuro */}
       <motion.div
-        className="absolute top-[-80px] left-[-80px] w-[200px] h-[200px] text-purple-300 opacity-30"
+        className="absolute top-[-80px] left-[-80px] w-[200px] h-[200px] text-[#111829] opacity-30"
         style={{ x: x1, y: y1 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1.1 }}
@@ -90,7 +83,7 @@ const InteractiveBackgroundShapes = () => {
         >
           <path
             fill="currentColor"
-            stroke="#4A148C"
+            stroke="#000"
             strokeWidth="2"
             d="M40.1,-67.6C52.7,-59.4,64.2,-50.2,72.8,-38.1C81.4,-26.1,87.2,-11,83.7,2.2C80.2,15.4,67.4,26.8,56.7,37.8C46,48.9,37.4,59.7,25.4,66.4C13.3,73.1,-2.2,75.8,-15.7,72.4C-29.3,68.9,-40.9,59.4,-50.4,47.4C-60,35.3,-67.5,20.6,-68.6,5.6C-69.6,-9.3,-64.2,-24.6,-55.6,-35.3C-47.1,-45.9,-35.4,-52,-23.1,-59.6C-10.9,-67.1,2,-76.2,14.5,-79C27,-81.8,40.1,-78.6,40.1,-67.6Z"
             transform="translate(100 100)"
@@ -99,7 +92,7 @@ const InteractiveBackgroundShapes = () => {
       </motion.div>
       {/* Blob 2 con borde oscuro */}
       <motion.div
-        className="absolute bottom-[-80px] right-[-80px] w-[250px] h-[250px] text-purple-400 opacity-30"
+        className="absolute bottom-[-80px] right-[-80px] w-[250px] h-[250px] text-[#111829] opacity-30"
         style={{ x: x2, y: y2 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1.2 }}
@@ -114,7 +107,7 @@ const InteractiveBackgroundShapes = () => {
         >
           <path
             fill="currentColor"
-            stroke="#4A148C"
+            stroke="#000"
             strokeWidth="2"
             d="M39.3,-69.2C53.4,-60.7,67.3,-50.2,71.5,-36.3C75.7,-22.4,70.1,-5.1,62.3,8.2C54.4,21.5,44.2,30.8,33.2,39.5C22.2,48.2,10.1,56.2,-2.2,59.1C-14.5,62.1,-29.1,59.9,-37.7,51.3C-46.4,42.8,-49.1,27.9,-50.9,13.2C-52.7,-1.6,-53.7,-16.1,-48.6,-27.4C-43.6,-38.7,-32.5,-46.9,-20.4,-55.6C-8.3,-64.4,4.9,-73.6,19.5,-77.3C34.2,-81,50.3,-79.2,39.3,-69.2Z"
             transform="translate(100 100)"
@@ -172,7 +165,7 @@ const ConfettiExplosion = () => {
 // Mensaje de éxito
 const SuccessMessage = () => (
   <motion.div
-    className="fixed top-10 left-1/2 transform -translate-x-1/2 bg-purple-700 text-white px-6 py-3 rounded-full shadow-xl flex items-center space-x-3 z-50"
+    className="fixed top-10 left-1/2 transform -translate-x-1/2 bg-[#111829] text-white px-6 py-3 rounded-full shadow-xl flex items-center space-x-3 z-50"
     initial={{ opacity: 0, y: -50 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -50 }}
@@ -194,9 +187,31 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    // Envía el email usando EmailJS con el nuevo Template ID: template_wjf7psc
+    emailjs
+      .send(
+        'service_e9flubp', // SERVICE ID
+        'template_wjf7psc', // NUEVO TEMPLATE ID
+        {
+          from_name: formData.name,
+          telefono: formData.phone,
+          correo: formData.email,
+          to_name: 'Lioberries',
+          message: `Nombre: ${formData.name}\nCorreo: ${formData.email}\nTeléfono: ${formData.phone}`
+        },
+        'iIXUZ8aE9JfbI0LFp' // PUBLIC KEY
+      )
+      .then(
+        (result) => {
+          console.log('Email enviado', result.text);
+          setSubmitted(true);
+          setTimeout(() => setSubmitted(false), 3000);
+          setFormData({ name: '', phone: '', email: '' });
+        },
+        (error) => {
+          console.error('Error al enviar el email:', error.text);
+        }
+      );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -221,7 +236,7 @@ const Contact = () => {
       >
         {/* FILA 1: Información e imagen */}
         <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
-          {/* Columna izquierda (60%): Título, descripción e info */}
+          {/* Columna izquierda (60%): Misión y Visión */}
           <motion.div className="md:w-3/5 space-y-6" variants={itemVariants}>
             <div>
               <h2 className="text-4xl font-extrabold text-white hover:scale-105 transition-transform">
@@ -234,25 +249,10 @@ const Contact = () => {
             </div>
             <div className="space-y-4">
               <p className="text-xl text-white">
-                <strong>Nombre de la empresa:</strong> Lioberries
+                <strong>MISIÓN:</strong> Nuestra misión es liderar la producción y exportación de superalimentos de alta calidad, ofreciendo productos naturales y nutritivos en todo el mundo. Estamos comprometidos con la sostenibilidad, la ética y el bienestar de las personas, mientras nos esforzamos por la excelencia y la innovación.
               </p>
               <p className="text-xl text-white">
-                <strong>Producto:</strong> Arándanos en Polvo Liofilizados
-              </p>
-              <p className="text-xl text-white">
-                <strong>Mercado:</strong> Estados Unidos
-              </p>
-              <p className="text-xl text-white">
-                <strong>Descripción del Producto:</strong> Nuestro arándano en polvo liofilizado es 100% natural, libre de conservantes y aditivos. Ideal para smoothies, postres y repostería, conservando sus nutrientes gracias al proceso de liofilización.
-              </p>
-              <p className="text-xl text-white">
-                <strong>Ventajas Competitivas:</strong> Alta calidad, versatilidad, sostenibilidad y certificaciones internacionales.
-              </p>
-              <p className="text-xl text-white">
-                <strong>Objetivo de Mercado:</strong> Consumidores conscientes de la salud, deportistas y público vegano.
-              </p>
-              <p className="text-xl text-white">
-                <strong>Capacidad de Exportación:</strong> Infraestructura logística sólida para exportar a EE. UU. cumpliendo altos estándares.
+                <strong>VISIÓN:</strong> Nuestra visión es ser un referente global en superalimentos, reconocidos por su calidad excepcional y compromiso con la sostenibilidad. Aspiramos a liderar en innovación y contribuir al bienestar de las comunidades locales, convirtiéndonos en una marca confiable y valiosa que mejora la calidad de vida de las personas y respeta el planeta.
               </p>
             </div>
           </motion.div>
@@ -289,7 +289,7 @@ const Contact = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-[#111829]"
               variants={inputVariants}
               initial="rest"
               whileFocus="focus"
@@ -307,7 +307,7 @@ const Contact = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-[#111829]"
               variants={inputVariants}
               initial="rest"
               whileFocus="focus"
@@ -325,7 +325,7 @@ const Contact = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-[#111829]"
               variants={inputVariants}
               initial="rest"
               whileFocus="focus"
@@ -335,12 +335,12 @@ const Contact = () => {
 
           <motion.button
             type="submit"
-            className="w-full py-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-md font-semibold flex items-center justify-center space-x-2 shadow-md text-sm border border-gray-800"
+            className="w-full py-2 bg-gradient-to-r from-[#111829] to-[#000] text-white rounded-md font-semibold flex items-center justify-center space-x-2 shadow-md text-sm border border-gray-800"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             variants={itemVariants}
           >
-            <span>{submitted ? 'Enviado!' : 'Enviar Mensaje'}</span>
+            <span>Enviar Mensaje</span>
             <Send className="w-4 h-4" />
           </motion.button>
         </motion.form>

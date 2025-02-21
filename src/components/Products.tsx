@@ -24,10 +24,7 @@ const Products = () => {
   };
 
   return (
-    <section
-      id="products"
-      className="py-20 bg-gradient-to-b from-white to-gray-50"
-    >
+    <section id="products" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -38,57 +35,75 @@ const Products = () => {
         >
           {/* TÍTULO Y DESCRIPCIÓN */}
           <div className="text-center">
-            <motion.h2
-              variants={itemVariants}
-              className="text-4xl font-bold text-gray-900 mb-4"
-            >
+            <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 mb-4">
               Nuestros Productos Premium
             </motion.h2>
             <motion.p
               variants={itemVariants}
               className="text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              Descubre nuestra gama de productos de arándanos liofilizados,
-              elaborados con cuidado y llenos de nutrientes.
+              Descubre nuestra gama de productos de arándanos liofilizados, elaborados con cuidado y llenos de nutrientes.
             </motion.p>
           </div>
 
           {/* GRID DE PRODUCTOS */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ProductCard
-              title="Polvo Premium"
-              price="$24.99"
-              weight="100g"
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbPqIuiVL4uaYzwx3ep2ai45a9j_6A0nsXg&s"
+              title="Berries Liofilizados"
+              price="S/31"
+              weight="30gr"
+              image="/1.png"
               features={[
                 '100% Natural',
                 'Rico en Antioxidantes',
                 'Sin Aditivos',
                 'Calidad Premium',
+                'Larga Duración sin Conservantes',
+                'Excelente para Desayunos y Snacks',
               ]}
             />
             <ProductCard
-              title="Paquete a Granel"
-              price="$89.99"
-              weight="500g"
-              image="/ROJOS.jpeg"
+              title="Polvo de Arándano Liofilizado 100gr"
+              price="S/31"
+              weight='100gr'
+              image="/3.png"
               features={[
                 'Ahorro al Por Mayor',
                 'Ideal para Negocios',
                 'Empaque Resellable',
                 'Descuento por Volumen',
+                'Alta Concentración de Nutrientes',
+                'Compatible con Dietas Keto y Veganas',
               ]}
+              
+            />
+               <ProductCard
+              title="Polvo de Arándano Liofilizado"
+              price="S/82"
+              weight='250gr'
+              image="/4.png"
+              features={[
+                'Ahorro al Por Mayor',
+                'Ideal para Negocios',
+                'Empaque Resellable',
+                'Descuento por Volumen',
+                'Alta Concentración de Nutrientes',
+                'Compatible con Dietas Keto y Veganas',
+              ]}
+              
             />
             <ProductCard
-              title="Pack de Muestra"
-              price="$9.99"
-              weight="30g"
-              image="/morados.jpeg"
+              title="Polvo de Arándano Liofilizado"
+              price="S/155"
+              weight="500 gr"
+              image="/5.png"
               features={[
-                'Prueba Antes de Comprar',
-                'Tamaño Perfecto',
-                'Opción de Regalo',
-                'Ideal para Viajes',
+                'Incluye Variados Sabores',
+                'Perfecto para Compartir',
+                'Alta Concentración de Nutrientes',
+                'Presentación en Bolsa Resellable',
+                'Ideal para Negocios',
+                'Excelente para Repostería',
               ]}
             />
           </div>
@@ -152,13 +167,17 @@ const ProductCard = ({
           ))}
         </ul>
 
-        <button
-          className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg
+        {/* El botón "Comprar" redirige a WhatsApp */}
+        <a
+          href="https://wa.me/51998223938"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full block py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg
                      font-semibold transform hover:scale-105 transition-all duration-300
-                     hover:shadow-lg group-hover:shadow-purple-500/25"
+                     hover:shadow-lg group-hover:shadow-purple-500/25 text-center"
         >
-          Añadir al Carrito
-        </button>
+          Comprar
+        </a>
       </div>
 
       {/* Elementos decorativos */}

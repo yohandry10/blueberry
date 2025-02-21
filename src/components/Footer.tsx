@@ -1,16 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
+
+// Componente que renderiza el icono de WhatsApp a partir de un archivo SVG ubicado en public/ws.svg
+const WhatsAppIcon = (props) => (
+  <motion.img
+    src="/ws.svg"
+    alt="WhatsApp"
+    {...props}
+    initial={{ filter: 'brightness(0.8) invert(0.8)' }}
+    whileHover={{ filter: 'brightness(1.5) invert(1)' }}
+    transition={{ duration: 0.5, ease: 'ease-out' }}
+  />
+);
 
 const Footer = () => {
   return (
     <footer className="relative bg-black text-white overflow-hidden">
-      {/* Fondo animado: degradado de negro a morado (#8e44ad) */}
+      {/* Fondo animado: degradado de negro a azul oscuro (#111829) */}
       <motion.div
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(180deg, #000 0%, #000 80%, #8e44ad 80%, #8e44ad 100%)',
+            'linear-gradient(180deg, #000 0%, #000 80%, #111829 80%, #111829 100%)',
           backgroundSize: '200% 200%',
         }}
         initial={{ backgroundPosition: '0% 0%' }}
@@ -28,7 +40,7 @@ const Footer = () => {
           {/* Columna 1: Lioberries – Información y redes sociales */}
           <div>
             <motion.h3
-              className="text-2xl font-bold bg-gradient-to-r from-[#8e44ad] to-blue-400 bg-clip-text text-transparent"
+              className="text-2xl font-bold bg-gradient-to-r from-[#111829] to-blue-400 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -46,10 +58,27 @@ const Footer = () => {
               Perfecto para Batidos, Repostería y Más.
             </motion.p>
             <div className="flex space-x-4 mt-4">
-              <SocialLink href="#" icon={<Facebook className="w-5 h-5" />} delay={0.6} />
-              <SocialLink href="#" icon={<Twitter className="w-5 h-5" />} delay={0.8} />
-              <SocialLink href="#" icon={<Instagram className="w-5 h-5" />} delay={1.0} />
-              <SocialLink href="#" icon={<Linkedin className="w-5 h-5" />} delay={1.2} />
+              <SocialLink
+                href="https://www.facebook.com/profile.php?id=61573073833477"
+                icon={
+                  <Facebook className="relative text-gray-300 group-hover:text-white transition-colors duration-500 ease-out w-5 h-5" />
+                }
+                delay={0.6}
+              />
+              <SocialLink
+                href="https://wa.me/51998223938"
+                icon={
+                  <WhatsAppIcon className="w-5 h-5 object-contain relative transition-colors duration-500 ease-out" />
+                }
+                delay={0.8}
+              />
+              <SocialLink
+                href="https://www.instagram.com/lioberries.empresa/"
+                icon={
+                  <Instagram className="relative text-gray-300 group-hover:text-white transition-colors duration-500 ease-out w-5 h-5" />
+                }
+                delay={1.0}
+              />
             </div>
           </div>
 
@@ -64,11 +93,21 @@ const Footer = () => {
               Enlaces Rápidos
             </motion.h4>
             <ul className="space-y-2">
-              <FooterLink href="#home" delay={0.4}>Inicio</FooterLink>
-              <FooterLink href="#products" delay={0.5}>Productos</FooterLink>
-              <FooterLink href="#benefits" delay={0.6}>Beneficios</FooterLink>
-              <FooterLink href="#gallery" delay={0.7}>Galería</FooterLink>
-              <FooterLink href="#contact" delay={0.8}>Contacto</FooterLink>
+              <FooterLink href="#home" delay={0.4}>
+                Inicio
+              </FooterLink>
+              <FooterLink href="#products" delay={0.5}>
+                Productos
+              </FooterLink>
+              <FooterLink href="#benefits" delay={0.6}>
+                Beneficios
+              </FooterLink>
+              <FooterLink href="#gallery" delay={0.7}>
+                Galería
+              </FooterLink>
+              <FooterLink href="#contact" delay={0.8}>
+                Contacto
+              </FooterLink>
             </ul>
           </div>
 
@@ -83,10 +122,18 @@ const Footer = () => {
               Productos
             </motion.h4>
             <ul className="space-y-2">
-              <FooterLink href="#premium" delay={0.6}>Polvo Premium</FooterLink>
-              <FooterLink href="#bulk" delay={0.7}>Paquete a Granel</FooterLink>
-              <FooterLink href="#sample" delay={0.8}>Pack de Muestra</FooterLink>
-              <FooterLink href="#wholesale" delay={0.9}>Venta al Por Mayor</FooterLink>
+              <FooterLink href="#premium" delay={0.6}>
+                Polvo Premium
+              </FooterLink>
+              <FooterLink href="#bulk" delay={0.7}>
+                Paquete a Granel
+              </FooterLink>
+              <FooterLink href="#sample" delay={0.8}>
+                Pack de Muestra
+              </FooterLink>
+              <FooterLink href="#wholesale" delay={0.9}>
+                Venta al Por Mayor
+              </FooterLink>
             </ul>
           </div>
 
@@ -111,8 +158,8 @@ const Footer = () => {
               </p>
               <p>
                 <span className="font-semibold">Correo electrónico: </span>
-                <a href="mailto:ventas@blueberries.com" className="hover:underline">
-                  ventas@blueberries.com
+                <a href="mailto:ventas@lioberries.com" className="hover:underline">
+                  ventas@lioberries.com
                 </a>
               </p>
               <p>
@@ -127,9 +174,9 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Sección inferior elevada: línea divisoria y navegación secundaria */}
+        {/* Sección inferior sin línea divisoria */}
         <motion.div
-          className="border-t border-gray-800 py-8 -mt-4"
+          className="py-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -144,9 +191,15 @@ const Footer = () => {
               © 2025 Lioberries. Todos los derechos reservados.
             </motion.p>
             <div className="flex space-x-6">
-              <FooterLink href="/privacy" delay={1.3} className="text-white">Política de Privacidad</FooterLink>
-              <FooterLink href="/terms" delay={1.4} className="text-white">Términos del Servicio</FooterLink>
-              <FooterLink href="/shipping" delay={1.5} className="text-white">Política de Envío</FooterLink>
+              <FooterLink href="/privacy" delay={1.3} className="text-white">
+                Política de Privacidad
+              </FooterLink>
+              <FooterLink href="/terms" delay={1.4} className="text-white">
+                Términos del Servicio
+              </FooterLink>
+              <FooterLink href="/shipping" delay={1.5} className="text-white">
+                Política de Envío
+              </FooterLink>
             </div>
           </div>
         </motion.div>
@@ -164,40 +217,32 @@ const Footer = () => {
       >
         <path
           d="M0,80 C360,0 1080,160 1440,80 L1440,120 L0,120 Z"
-          fill="#8e44ad"
+          fill="#111829"
         />
       </motion.svg>
     </footer>
   );
 };
 
-const SocialLink = ({ href, icon, delay = 0 }: { href: string; icon: React.ReactNode; delay?: number; }) => (
+const SocialLink = ({ href, icon, delay = 0 }) => (
   <motion.a
     href={href}
+    target="_blank"
+    rel="noopener noreferrer"
     className="relative group overflow-hidden"
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
   >
-    <div className="flex items-center justify-center w-16 h-16 border-2 border-[#8e44ad] rounded-full transition duration-500 ease-out relative overflow-hidden group-hover:bg-[#8e44ad]">
-      {/* Efecto de llenado: el span se expande verticalmente con un sólido morado */}
-      <span className="absolute inset-0 z-0 bg-gradient-to-t from-[#8e44ad] to-[#8e44ad] rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
-      <span className="relative z-10 text-white">{icon}</span>
+    <div className="flex items-center justify-center w-16 h-16 border-2 border-[#111829] rounded-full transition duration-500 ease-out relative overflow-hidden group-hover:bg-[#111829]">
+      {/* Efecto de llenado con gradiente */}
+      <span className="absolute inset-0 bg-gradient-to-t from-[#111829] to-black rounded-full transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+      {icon}
     </div>
   </motion.a>
 );
 
-const FooterLink = ({
-  href,
-  children,
-  delay = 0,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) => (
+const FooterLink = ({ href, children, delay = 0, className }) => (
   <motion.li
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
