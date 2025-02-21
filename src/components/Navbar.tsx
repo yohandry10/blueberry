@@ -27,7 +27,7 @@ const Navbar = () => {
             <motion.img
               src="/Blueberry.png"
               alt="Lioberries Logo"
-              className="w-32 object-contain bg-transparent"
+              className="w-28 sm:w-32 object-contain bg-transparent"
               style={{ clipPath: 'ellipse(45% 30% at 50% 50%)' }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

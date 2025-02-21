@@ -77,7 +77,7 @@ const Benefits = () => {
   return (
     <section
       id="benefits"
-      className="py-24 bg-white relative overflow-hidden"
+      className="py-16 md:py-24 bg-white relative overflow-hidden"
       style={{ fontFamily: "'Roboto', sans-serif" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,43 +86,43 @@ const Benefits = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="space-y-20"
+          className="space-y-16 md:space-y-20"
         >
-          <div className="text-center">
+          <div className="text-center px-4">
             <motion.h2
               variants={titleVariants}
               whileHover="hover"
               whileTap="tap"
-              className="whitespace-nowrap text-4xl md:text-5xl font-bold mb-6 text-gray-900"
+              className="whitespace-normal sm:whitespace-nowrap text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900"
               style={{ letterSpacing: '0.03em' }}
             >
               ¿Por qué elegir nuestro polvo de arándanos?
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto"
             >
               Descubre la pureza premium de nuestros arándanos liofilizados, cuidadosamente procesados para preservar toda su vitalidad.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.03 }}
-                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-200"
+                className="group relative bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-gray-200"
               >
-                <div className="flex items-start space-x-5 relative z-10">
-                  <div className="bg-white p-4 rounded-full shadow-sm">
+                <div className="flex items-start space-x-4 sm:space-x-5 relative z-10">
+                  <div className="bg-white p-3 sm:p-4 rounded-full shadow-sm">
                     {benefit.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">
                       {benefit.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       {benefit.description}
                     </p>
                   </div>
@@ -146,3 +146,4 @@ const Benefits = () => {
 };
 
 export default Benefits;
+

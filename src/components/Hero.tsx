@@ -72,12 +72,9 @@ const Hero = () => {
     >
       {/* Fondo animado con overlays y efecto parallax */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-scroll md:bg-fixed"
         style={{
           backgroundImage: 'url("/blue.webp")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
         }}
       >
         {/* Overlay con degradado púrpura a azul */}
@@ -111,14 +108,13 @@ const Hero = () => {
           {/* Título con efecto reveal avanzado */}
           <AnimatedText
             text="Polvo de Arándanos"
-            className="text-5xl md:text-7xl font-extrabold tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight"
             delay={0.2}
           />
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
-            {/* Se deja "Premium Liofilizado" como estaba originalmente */}
             <AnimatedText
               text="Premium Liofilizado"
-              className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+              className="text-3xl sm:text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
               delay={1}
             />
           </motion.div>
@@ -127,7 +123,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200"
+            className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-gray-200"
           >
             100% Natural, Rico en Nutrientes
             <br />
@@ -143,7 +139,7 @@ const Hero = () => {
             {/* Botones con efecto de llenado y transiciones sorprendentes, mismos tamaños */}
             <a
               href="#products"
-              className="group relative inline-block w-64 overflow-hidden rounded-full bg-gray-700"
+              className="group relative inline-block w-40 sm:w-48 md:w-64 overflow-hidden rounded-full bg-gray-700"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
               <span className="relative block py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105 text-center">
@@ -153,7 +149,7 @@ const Hero = () => {
 
             <a
               href="#benefits"
-              className="group relative inline-block w-64 overflow-hidden rounded-full bg-gray-700"
+              className="group relative inline-block w-40 sm:w-48 md:w-64 overflow-hidden rounded-full bg-gray-700"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
               <span className="relative block py-4 text-white font-semibold tracking-wide transition-all duration-500 group-hover:scale-105 text-center">
@@ -174,7 +170,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Elementos flotantes adicionales: todos en tonos azules */}
+      {/* Elementos flotantes adicionales: se muestran solo en pantallas mayores a mobile */}
       <motion.div
         animate={{
           y: [0, -30, 0],
@@ -182,7 +178,7 @@ const Hero = () => {
           scale: [1, 1.1, 1],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/3 left-1/5 w-20 h-20 bg-blue-500/30 backdrop-blur-md rounded-full"
+        className="hidden sm:block absolute top-[30%] left-[20%] w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/30 backdrop-blur-md rounded-full"
       />
       <motion.div
         animate={{
@@ -191,7 +187,7 @@ const Hero = () => {
           scale: [1, 0.9, 1],
         }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        className="absolute bottom-1/4 right-1/4 w-28 h-28 bg-blue-500/30 backdrop-blur-md rounded-full"
+        className="hidden sm:block absolute bottom-[25%] right-[25%] w-20 h-20 sm:w-28 sm:h-28 bg-blue-500/30 backdrop-blur-md rounded-full"
       />
       <motion.div
         animate={{
@@ -199,7 +195,7 @@ const Hero = () => {
           opacity: [0.8, 1, 0.8],
         }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-10 right-10 w-16 h-16 bg-white/10 backdrop-blur-md rounded-full"
+        className="hidden sm:block absolute top-8 right-8 w-12 h-12 sm:w-16 sm:h-16 bg-white/10 backdrop-blur-md rounded-full"
       />
     </section>
   );
