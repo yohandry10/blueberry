@@ -40,11 +40,7 @@ const Gallery = () => {
       title: "Pastel de Arándanos",
       description: "Un pastel suave y esponjoso, perfecto para el postre."
     },
-    {
-      url: "/ensalada.jpeg",
-      title: "Ensalada de Arándanos",
-      description: "Frescos arándanos combinados con vegetales crujientes."
-    },
+
     {
       url: "/smothie.jpeg",
       title: "Smoothie Energético",
