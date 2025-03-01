@@ -203,6 +203,21 @@ const Footer = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Texto añadido: by Yohandry Chirinos programador web fullstack */}
+        <motion.p
+          className="text-center text-white mt-4 text-sm"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        >
+          <a
+            href="mailto:yohandrychirinos1@gmail.com"
+            className="hover:underline"
+          >
+            by Yohandry Chirinos programador web fullstack
+          </a>
+        </motion.p>
       </div>
 
       {/* SVG decorativo en la parte inferior */}
@@ -250,7 +265,9 @@ const FooterLink = ({ href, children, delay = 0, className }) => (
   >
     <a
       href={href}
-      className={`${className ? className : 'text-gray-400 hover:text-white'} transition-colors duration-300`}
+      className={`${
+        className ? className : 'text-gray-400 hover:text-white'
+      } transition-colors duration-300`}
     >
       {children}
     </a>
